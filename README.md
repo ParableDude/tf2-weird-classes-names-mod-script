@@ -2,6 +2,23 @@
 
 This python script will allow the user to create and install the [TF2 weird classes names mod](https://gamebanana.com/mods/292930) mod for their local client of Team Fortress 2.
 
+## How to use 
+
+> *Note:* This section of the README file is subject to change
+
+As of the latest commit pushed, here's how to launch the script :
+
+1- Install Python
+
+2- install the vpk library with the following command :
+
+`pip install vpk`
+
+3- open the mod folder in the terminal, and launch the script with the following command :
+
+`python3 Main.py`
+
+
 ## Roadmap
 
 ### Main features
