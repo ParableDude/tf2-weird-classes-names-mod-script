@@ -2,9 +2,9 @@ import shutil
 import os
 
 tf2Folder = ""
-customFolder = ""
 tmpFileName = "/tmpFile.txt"
 dataFolder = "resources"
+modFolder = dataFolder + "/mod"
 
 textValues = {
     "Scout": "Speedy Motherf#cker",
@@ -29,29 +29,31 @@ textValues = {
 
 
 def rewrite(TF2Folder, resourceFile):
-    global tf2Folder 
+    global tf2Folder
     tf2Folder = TF2Folder
 
     copyFileToDataAsTmp(resourceFile)
     file = createFiles()
     return file
 
-def ensureResourceFolderExists():
-    if not os.path.exists(dataFolder):
-        os.makedirs(dataFolder)
+
+def ensureFolderExists(folder):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
 
 def copyFileToDataAsTmp(file):
-    ensureResourceFolderExists()
+    ensureFolderExists(dataFolder)
     shutil.copyfile(file, dataFolder + tmpFileName)
     print("copied file into the resources folder")
 
 
-# copy a file to TF2's custom folder
-def copyFileToCustom(file):
-    customFolder = tf2Folder + "/tf/custom"
-    shutil.copyfile(file, customFolder + "/tf_english.txt")
-    print("copied file into the custom folder")
-    return customFolder + "/tf_english.txt"
+# copy a file to the resources folder's mod folder
+def copyFileToModFolder(file):
+    ensureFolderExists(modFolder + "/resource")
+    shutil.copyfile(file, modFolder + "/resource/tf_english.txt")
+    print("copied file into the resource mod folder")
+    return modFolder + "/resource/tf_english.txt"
 
 
 def createFiles():
@@ -72,12 +74,12 @@ def createFiles():
         previousFile = currentFile
         cl += 1
 
-    customFile = copyFileToCustom(previousFile)
+    modFile = copyFileToModFolder(previousFile)
 
     if os.path.exists(previousFile):
         os.remove(previousFile)
-    
-    return customFile
+
+    return modFolder
 
 
 def findAndWrite(writingFile, readingFile, oldText, newText):
@@ -92,11 +94,11 @@ def findAndWrite(writingFile, readingFile, oldText, newText):
         newLine = ""
         lineParts = line.split('"')
 
-        for i in range(len(lineParts)) :
+        for i in range(len(lineParts)):
             part = lineParts[i]
-            if(i>1 and part.strip() != "") :
+            if i > 1 and part.strip() != "":
                 part = part.replace(oldText, newText)
-            if(i==0) :
+            if i == 0:
                 newLine = part
             else:
                 newLine = newLine + '"' + part
@@ -106,10 +108,6 @@ def findAndWrite(writingFile, readingFile, oldText, newText):
     newFile.close()
     oldFile.close()
 
-    # openedFile = open(file)
-    # for i in openedFile.readlines():
-    #     print(i)
-    # openedFile.close()
-
-    # for line in fileinput.input(file, inplace=True):
-    #     print("{} {}".format(fileinput.filelineno(), line), end="")
+def deleteResourcesFolder():
+    if os.path.exists(dataFolder):
+        shutil.rmtree(dataFolder)

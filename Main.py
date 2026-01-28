@@ -1,4 +1,5 @@
-from Modules.Rewriter import rewrite
+from Modules.Rewriter import rewrite, deleteResourcesFolder
+from Modules.VpkManager import packageFile, copyVpkToCustomFolder
 
 # path to the TF2 folder
 tf2Folder = "E:/SteamLibrary/steamapps/common/Team Fortress 2"
@@ -14,4 +15,8 @@ openedResourceFile = open(resourceFile)
 openedResourceFile.close()
 
 # will copy and rewrite the file
-modFile = rewrite(tf2Folder, resourceFile)
+modFolder = rewrite(tf2Folder, resourceFile)
+
+packageFile(tf2Folder + "/tf/custom/weirdClassesNames.vpk", modFolder)
+
+deleteResourcesFolder()
