@@ -50,3 +50,4 @@ My greatest thanks to :
 - my friend Dave for being the GOAT and believing in me (you owe me a bag of doritos now)
 - [Cueki's casual preloader](https://gamebanana.com/tools/19049), and everyone involved with it, for giving me the inspiration to do an automated script to keep my mod up to date (really, an obsolete version of the mod crashes the game, and I don't want to go through each lines of that file at every TF2 update)
 - the python [vpk library](https://github.com/ValvePython/vpk) to allow me to create a packaged file to put in the custom folder
+- the [python custom tkinter library](https://github.com/TomSchimansky/CustomTkinter) to offer me an easy and intuitive way to create an UI for this app

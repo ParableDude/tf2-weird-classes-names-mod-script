@@ -3,7 +3,7 @@ import os
 
 tf2Folder = ""
 tmpFileName = "/tmpFile.txt"
-dataFolder = "resources"
+dataFolder = "Resources"
 modFolder = dataFolder + "/mod"
 
 textValues = {
@@ -109,5 +109,5 @@ def findAndWrite(writingFile, readingFile, oldText, newText):
     oldFile.close()
 
 def deleteResourcesFolder():
-    if os.path.exists(dataFolder):
-        shutil.rmtree(dataFolder)
+    if os.path.exists(modFolder):
+        shutil.rmtree(modFolder)
